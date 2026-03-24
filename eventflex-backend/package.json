@@ -1,0 +1,40 @@
+{
+  "name": "eventflex-backend",
+  "version": "1.0.0",
+  "description": "EventFlex Production-Ready Backend - Microservices Architecture",
+  "private": true,
+  "workspaces": [
+    "services/api",
+    "services/websocket-service",
+    "services/worker-service"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:ws\" \"npm run dev:worker\"",
+    "dev:api": "cd services/api && npm run dev",
+    "dev:ai": "cd services/ai-service && uvicorn app.main:app --reload --port 8000",
+    "dev:ws": "cd services/websocket-service && npm run dev",
+    "dev:worker": "cd services/worker-service && npm run dev",
+    "test": "npm run test --workspaces --if-present",
+    "test:coverage": "npm run test:coverage --workspaces --if-present",
+    "lint": "eslint services/ --ext .js",
+    "format": "prettier --write \"services/**/*.js\"",
+    "migrate": "cd shared/prisma && npx prisma migrate dev",
+    "migrate:prod": "cd shared/prisma && npx prisma migrate deploy",
+    "migrate:reset": "cd shared/prisma && npx prisma migrate reset",
+    "studio": "cd shared/prisma && npx prisma studio",
+    "seed": "cd shared/prisma && npx prisma db seed",
+    "generate": "cd shared/prisma && npx prisma generate",
+    "docker:up": "docker-compose -f infrastructure/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f infrastructure/docker-compose.yml down",
+    "docker:logs": "docker-compose -f infrastructure/docker-compose.yml logs -f"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.2.5",
+    "eslint": "^8.57.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
