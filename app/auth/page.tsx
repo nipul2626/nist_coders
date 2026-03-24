@@ -111,7 +111,7 @@ function AuthContent() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
                 className="text-xl font-bold mb-2"
-              >
+              > // commit one 
                 Account Created!
               </motion.h3>
               <motion.p
