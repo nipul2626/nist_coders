@@ -57,7 +57,8 @@ function AuthContent() {
     setShowConfetti(true)
     
     // Redirect after 2 seconds
-    //this redirect to events
+    //this redirect to events in 2 sec
+  
     setTimeout(() => {
       router.push('/events')
     }, 2500)
