@@ -16,7 +16,7 @@ interface Notification {
   read: boolean;
   link?: string;
 }
-
+//dashboard
 const mockNotifications: Notification[] = [
   {
     id: "1",
